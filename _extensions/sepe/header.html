@@ -1,0 +1,179 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Inconsolata:wght@300;400;500;600;700;800;900&family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/tagformat']},
+  section: 1,
+  tex: {
+    tags: 'all',
+    packages: {'[+]': ['tagformat']},
+    tagformat: {
+      number: (n) => {return n.toString()} //MathJax.config.section + '.' + n
+    }
+  }
+};
+</script>
+
+<!-- script>
+document.addEventListener("DOMContentLoaded", function(e) {
+  document.querySelectorAll("li > p > sup").forEach(el => {
+    el.textContent = String.fromCharCode(96 + parseInt(el.textContent));
+  });
+});
+</script -->
+
+<!--script>
+document.addEventListener("DOMContentLoaded", function(e) {
+  document.querySelectorAll('div.leaflet').forEach(el => {
+    el.parentNode.style.width = "100%";
+    el.style.width = "100%";
+  });
+});
+</script -->
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(e) {
+  document.querySelectorAll('div.level3 h3').forEach(el => {
+    var dummy = document.createElement('h4');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+  document.querySelectorAll('div.level2 h2').forEach(el => {
+    var dummy = document.createElement('h3');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+  document.querySelectorAll('div.level1 h1').forEach(el => {
+    var dummy = document.createElement('h2');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+});
+</script>
+
+<!--script>
+$(function() {
+    $('section > p:first-of-type').each(function() {
+        var text = this.innerHTML;
+        var firstSpaceIndex = text.indexOf(" ", 12);
+        if (firstSpaceIndex > 0) {
+            var substrBefore = text.substring(0, firstSpaceIndex);
+            var substrAfter = text.substring(firstSpaceIndex, text.length)
+            var secondSpaceIndex = substrAfter.indexOf(" ");
+            if (secondSpaceIndex > 0) {
+               var substrSecondBefore = substrAfter.substring(0, secondSpaceIndex);
+               var substrSecondAfter = text.substring(secondSpaceIndex, substrAfter.length)
+               var newText = '<span class="firstWords">' + substrBefore + substrSecondBefore + '</span>' + substrSecondAfter;
+               this.innerHTML = newText;
+            } else {
+              var newText = '<span class="firstWords">' + substrBefore + '</span>' + substrAfter;
+              this.innerHTML = newText;
+            }
+        }
+    });
+});
+</script -->
+
+<script>
+    // Function to apply the class "firstWords" to the first two words of the first paragraph of each section
+    function applyFirstWordsClass() {
+      // Get all the section elements
+      const sections = document.querySelectorAll('section');
+
+      // Loop through each section
+      sections.forEach((section) => {
+        // Get the first paragraph element that is a direct child of the section
+        const firstParagraph = section.querySelector(':scope > p');
+
+        // If a paragraph exists, apply the class "firstWords" to the first two words
+        if (firstParagraph) {
+          const words = firstParagraph.textContent.split(' ');
+          if (words.length > 1) {
+            const firstTwoWords = words.slice(0, 2).join(' ');
+            const remainingWords = words.slice(2).join(' ');
+            firstParagraph.innerHTML = `<span class="firstWords">${firstTwoWords}</span> ${remainingWords}`;
+          }
+        }
+      });
+    }
+
+// Call the function to apply the class
+document.addEventListener('DOMContentLoaded', applyFirstWordsClass)
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(e) {
+  document.querySelectorAll('section.level3 h3').forEach(el => {
+    var dummy = document.createElement('h4');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+  document.querySelectorAll('section.level2 h2').forEach(el => {
+    var dummy = document.createElement('h3');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+  document.querySelectorAll('section.level1 h1').forEach(el => {
+    var dummy = document.createElement('h2');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+});
+</script>
+
+
+<script>
+// Function to fetch and replace <img> tags with SVG content
+async function replaceImgWithInlineSvg() {
+  // Get all <img> elements on the page
+  const imgElements = document.querySelectorAll('img');
+
+  // Loop through each <img> element
+  for (const img of imgElements) {
+    const src = img.getAttribute('src');
+
+    // Check if the image is an SVG
+    if (src && src.endsWith('.svg')) {
+      try {
+        // Fetch the SVG content
+        const response = await fetch(src);
+        const svgText = await response.text();
+
+        // Create a temporary div to hold the SVG content
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = svgText;
+
+        // Get the SVG element from the temporary div
+        const svgElement = tempDiv.querySelector('svg');
+
+        // Copy attributes from the <img> to the <svg>
+        for (const attr of img.attributes) {
+          if (attr.name !== 'src' && attr.name !== 'alt') { // Skip 'src' and 'alt' attributes
+            svgElement.setAttribute(attr.name, attr.value);
+          }
+        }
+
+        // Replace the <img> with the <svg>
+        img.replaceWith(svgElement);
+      } catch (error) {
+        console.error(`Failed to fetch or replace SVG: ${error}`);
+      }
+    }
+  }
+}
+
+// Run the function after the DOM is fully loaded
+Reveal.on('ready', event => {
+  document.addEventListener('DOMContentLoaded', replaceImgWithInlineSvg);
+}):
+</script>
+
+

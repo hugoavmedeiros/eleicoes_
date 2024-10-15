@@ -1,0 +1,75 @@
+title: Modelo de Relatório para Secretaria Executiva de Monitoramento
+author: André Leite
+version: 0.1.0
+contributes:
+  formats:
+    pdf:
+      header-includes:
+        - \usepackage{amsmath}
+      template: sepe_report.tex
+      toc-depth: 2
+      pdf-engine: pdflatex
+      cite-method: biblatex
+      biblio-style: authoryear-comp
+      linestretch: 1.5
+      lang: pt-BR
+      highlight-style: github
+      link-citations: true
+      link-references: true
+      keep-tex: true
+      output-file: "sepe_RelatorioTecnico"
+      output-ext:  "pdf"
+      echo: false
+      warning: false
+      message: false
+      collapse: true
+      fig-height: 5
+      fig-width: 8
+      fig.cap: ''
+      fig.align: 'center'
+      R.options:
+        show.signif.stars: true
+
+    html:
+      code-overflow: wrap
+      theme: [spacelab, fonts.scss]
+      template-partials: title-block.html
+      toc: true
+      toc-depth: 2
+      toc-float: true
+      toc-title: "Sumário"
+      html-math-method:
+        method: mathjax
+        url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"
+      number-sections: true
+      fig_caption: true
+      highlight-style: github
+      #cover-image: ressources/bloc-etat
+      css: sepe_report.css
+      include-in-header: header.html
+      include-in-footer: footer.html
+      biblio-style: authoryear-comp
+      linestretch: 1.5
+      lang: pt-BR
+      link-citations: true
+      link-references: true
+      reference-location: margin
+      engine: knitr
+      output-file: "index"
+      output-ext:  "html"
+      echo: false
+      warning: false
+      message: false
+      collapse: true
+      fig-height: 5
+      fig-width: 8
+      fig.cap: ''
+      fig.align: 'center'
+      dev: "svglite"
+      fig-format: svglite
+      default-image-extension: svg
+      R.options:
+        show.signif.stars: true
+        knitr.svg.object: true
+      filters:
+        - inline-svg.lua

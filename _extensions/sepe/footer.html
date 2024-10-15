@@ -1,0 +1,5 @@
+<script>
+document.querySelectorAll("a.footnote-ref sup").forEach(el => {
+  el.textContent = String.fromCharCode(96 + parseInt(el.textContent));
+});
+</script>

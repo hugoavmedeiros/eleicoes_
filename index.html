@@ -1,0 +1,3124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>A polarização afetiva pode prever resultados eleitorais?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="relatorio_files/libs/clipboard/clipboard.min.js"></script>
+<script src="relatorio_files/libs/quarto-html/quarto.js"></script>
+<script src="relatorio_files/libs/quarto-html/popper.min.js"></script>
+<script src="relatorio_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="relatorio_files/libs/quarto-html/anchor.min.js"></script>
+<link href="relatorio_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="relatorio_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="relatorio_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="relatorio_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="relatorio_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&amp;family=Inconsolata:wght@300;400;500;600;700;800;900&amp;family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/tagformat']},
+  section: 1,
+  tex: {
+    tags: 'all',
+    packages: {'[+]': ['tagformat']},
+    tagformat: {
+      number: (n) => {return n.toString()} //MathJax.config.section + '.' + n
+    }
+  }
+};
+</script><script>
+document.addEventListener("DOMContentLoaded", function(e) {
+  document.querySelectorAll('div.level3 h3').forEach(el => {
+    var dummy = document.createElement('h4');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+  document.querySelectorAll('div.level2 h2').forEach(el => {
+    var dummy = document.createElement('h3');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+  document.querySelectorAll('div.level1 h1').forEach(el => {
+    var dummy = document.createElement('h2');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+});
+</script><script>
+    // Function to apply the class "firstWords" to the first two words of the first paragraph of each section
+    function applyFirstWordsClass() {
+      // Get all the section elements
+      const sections = document.querySelectorAll('section');
+
+      // Loop through each section
+      sections.forEach((section) => {
+        // Get the first paragraph element that is a direct child of the section
+        const firstParagraph = section.querySelector(':scope > p');
+
+        // If a paragraph exists, apply the class "firstWords" to the first two words
+        if (firstParagraph) {
+          const words = firstParagraph.textContent.split(' ');
+          if (words.length > 1) {
+            const firstTwoWords = words.slice(0, 2).join(' ');
+            const remainingWords = words.slice(2).join(' ');
+            firstParagraph.innerHTML = `<span class="firstWords">${firstTwoWords}</span> ${remainingWords}`;
+          }
+        }
+      });
+    }
+
+// Call the function to apply the class
+document.addEventListener('DOMContentLoaded', applyFirstWordsClass)
+</script><script>
+document.addEventListener("DOMContentLoaded", function(e) {
+  document.querySelectorAll('section.level3 h3').forEach(el => {
+    var dummy = document.createElement('h4');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+  document.querySelectorAll('section.level2 h2').forEach(el => {
+    var dummy = document.createElement('h3');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+  document.querySelectorAll('section.level1 h1').forEach(el => {
+    var dummy = document.createElement('h2');
+    dummy.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(dummy, el);
+  });
+});
+</script><script>
+// Function to fetch and replace <img> tags with SVG content
+async function replaceImgWithInlineSvg() {
+  // Get all <img> elements on the page
+  const imgElements = document.querySelectorAll('img');
+
+  // Loop through each <img> element
+  for (const img of imgElements) {
+    const src = img.getAttribute('src');
+
+    // Check if the image is an SVG
+    if (src && src.endsWith('.svg')) {
+      try {
+        // Fetch the SVG content
+        const response = await fetch(src);
+        const svgText = await response.text();
+
+        // Create a temporary div to hold the SVG content
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = svgText;
+
+        // Get the SVG element from the temporary div
+        const svgElement = tempDiv.querySelector('svg');
+
+        // Copy attributes from the <img> to the <svg>
+        for (const attr of img.attributes) {
+          if (attr.name !== 'src' && attr.name !== 'alt') { // Skip 'src' and 'alt' attributes
+            svgElement.setAttribute(attr.name, attr.value);
+          }
+        }
+
+        // Replace the <img> with the <svg>
+        img.replaceWith(svgElement);
+      } catch (error) {
+        console.error(`Failed to fetch or replace SVG: ${error}`);
+      }
+    }
+  }
+}
+
+// Run the function after the DOM is fully loaded
+Reveal.on('ready', event => {
+  document.addEventListener('DOMContentLoaded', replaceImgWithInlineSvg);
+}):
+</script><link rel="stylesheet" href="_extensions/sepe/sepe_report.css"><link rel="stylesheet" href="styles.css"></head>
+
+
+
+
+<!-- script>
+document.addEventListener("DOMContentLoaded", function(e) {
+  document.querySelectorAll("li > p > sup").forEach(el => {
+    el.textContent = String.fromCharCode(96 + parseInt(el.textContent));
+  });
+});
+</script -->
+
+<!--script>
+document.addEventListener("DOMContentLoaded", function(e) {
+  document.querySelectorAll('div.leaflet').forEach(el => {
+    el.parentNode.style.width = "100%";
+    el.style.width = "100%";
+  });
+});
+</script -->
+
+
+
+
+<!--script>
+$(function() {
+    $('section > p:first-of-type').each(function() {
+        var text = this.innerHTML;
+        var firstSpaceIndex = text.indexOf(" ", 12);
+        if (firstSpaceIndex > 0) {
+            var substrBefore = text.substring(0, firstSpaceIndex);
+            var substrAfter = text.substring(firstSpaceIndex, text.length)
+            var secondSpaceIndex = substrAfter.indexOf(" ");
+            if (secondSpaceIndex > 0) {
+               var substrSecondBefore = substrAfter.substring(0, secondSpaceIndex);
+               var substrSecondAfter = text.substring(secondSpaceIndex, substrAfter.length)
+               var newText = '<span class="firstWords">' + substrBefore + substrSecondBefore + '</span>' + substrSecondAfter;
+               this.innerHTML = newText;
+            } else {
+              var newText = '<span class="firstWords">' + substrBefore + '</span>' + substrAfter;
+              this.innerHTML = newText;
+            }
+        }
+    });
+});
+</script -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sumário</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">1</span> Introdução</a></li>
+  <li><a href="#o-que-você-faria-se-a-sua-filha-se-casasse-com-um-bolsonaristapetista" id="toc-o-que-você-faria-se-a-sua-filha-se-casasse-com-um-bolsonaristapetista" class="nav-link" data-scroll-target="#o-que-você-faria-se-a-sua-filha-se-casasse-com-um-bolsonaristapetista"><span class="header-section-number">2</span> O que você faria se a sua filha se casasse com um bolsonarista/petista?</a></li>
+  <li><a href="#metodologia" id="toc-metodologia" class="nav-link" data-scroll-target="#metodologia"><span class="header-section-number">3</span> Metodologia</a></li>
+  <li><a href="#resultados" id="toc-resultados" class="nav-link" data-scroll-target="#resultados"><span class="header-section-number">4</span> Resultados</a></li>
+  <li><a href="#capitais" id="toc-capitais" class="nav-link" data-scroll-target="#capitais"><span class="header-section-number">5</span> Capitais</a>
+  <ul class="collapse">
+  <li><a href="#aracaju" id="toc-aracaju" class="nav-link" data-scroll-target="#aracaju"><span class="header-section-number">5.1</span> Aracaju</a></li>
+  <li><a href="#belo-horizonte" id="toc-belo-horizonte" class="nav-link" data-scroll-target="#belo-horizonte"><span class="header-section-number">5.2</span> Belo Horizonte</a></li>
+  <li><a href="#belém" id="toc-belém" class="nav-link" data-scroll-target="#belém"><span class="header-section-number">5.3</span> Belém</a></li>
+  <li><a href="#campo-grande" id="toc-campo-grande" class="nav-link" data-scroll-target="#campo-grande"><span class="header-section-number">5.4</span> Campo Grande</a></li>
+  </ul></li>
+  <li><a href="#apêndice" id="toc-apêndice" class="nav-link" data-scroll-target="#apêndice"><span class="header-section-number">6</span> Apêndice</a>
+  <ul class="collapse">
+  <li><a href="#aracaju-1" id="toc-aracaju-1" class="nav-link" data-scroll-target="#aracaju-1"><span class="header-section-number">6.1</span> Aracaju</a></li>
+  <li><a href="#belo-horizonte-1" id="toc-belo-horizonte-1" class="nav-link" data-scroll-target="#belo-horizonte-1"><span class="header-section-number">6.2</span> Belo Horizonte</a></li>
+  <li><a href="#belém-1" id="toc-belém-1" class="nav-link" data-scroll-target="#belém-1"><span class="header-section-number">6.3</span> Belém</a></li>
+  <li><a href="#campo-grande-1" id="toc-campo-grande-1" class="nav-link" data-scroll-target="#campo-grande-1"><span class="header-section-number">6.4</span> Campo Grande</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header">
+<h1 class="title display-7">A polarização afetiva pode prever resultados eleitorais?</h1>
+<p class="subtitle lead">Evidências de um estudo pré-registrado</p>
+<div class="grid" style="--bs-gap: .25rem 1rem;">
+<div class="author g-col-xxl-4 g-col-xl-4  g-col-lg-4 g-col-md-4 g-col-sm-6 g-col-12">
+      Dalson Figueiro Filho
+      <br>
+      <em>Universidade Federal de Pernambuco</em>
+      <br>
+      <a href="mailto:dalson.figueiredofo@ufpe.br">dalson.figueiredofo@ufpe.br</a>
+</div>
+<!--p class="author">true</p-->
+<div class="author g-col-xxl-4 g-col-xl-4  g-col-lg-4 g-col-md-4 g-col-sm-6 g-col-12">
+      Ernani Carvalho
+      <br>
+      <em>Universidade Federal de Pernambuco</em>
+      <br>
+      <a href="mailto:ernani.carvalho@ufpe.br">ernani.carvalho@ufpe.br</a>
+</div>
+<!--p class="author">true</p-->
+<div class="author g-col-xxl-4 g-col-xl-4  g-col-lg-4 g-col-md-4 g-col-sm-6 g-col-12">
+      Hugo Medeiros
+      <br>
+      <em>Secretaria Estadual de Planejamento de Pernambuco</em>
+      <br>
+      <a href="mailto:hugoavmedeiros@gmail.com">hugoavmedeiros@gmail.com</a>
+</div>
+<!--p class="author">true</p-->
+<div class="author g-col-xxl-4 g-col-xl-4  g-col-lg-4 g-col-md-4 g-col-sm-6 g-col-12">
+      Marcelle Amaral
+      <br>
+      <em>Universidade Federal de Pernambuco</em>
+      <br>
+      <a href="mailto:"></a>
+</div>
+<!--p class="author">true</p-->
+<div class="author g-col-xxl-4 g-col-xl-4  g-col-lg-4 g-col-md-4 g-col-sm-6 g-col-12">
+      Maria do Carmo Soares
+      <br>
+      <em>Universidade Federal de Pernambuco</em>
+      <br>
+      <a href="mailto:"></a>
+</div>
+<!--p class="author">true</p-->
+</div>
+<p class="date">Recife, 14 de outubro de 2024</p>
+</header>
+
+<section id="introdução" class="level1 page-columns page-full" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introdução</h1>
+<div class="page-columns page-full"><p>Este artigo apresenta um novo método<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> para estimar a transferência de votos em sistemas multipartidários altamente polarizados. O arcabouço teórico se baseia nos argumentos utilizados por Comellas e Torcal (2023), o referido estudo foca nos contextos da Europa do Sul e da América Latina para entender como os vínculos emocionais dos cidadãos com os rótulos políticos de esquerda e direita moldam suas atitudes políticas.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Materiais de replicação estão disponíveis em:</p></li></div></div>
+<p>Em contornos mais gerais o argumento central dos autores é que a polarização afetiva leva os eleitores a se agruparem em blocos de esquerda e direita, com fortes vínculos emocionais com seu próprio grupo e animosidade em relação ao grupo ideológico oposto. Este fenômeno é proeminente mesmo em sistemas multipartidários onde várias formações políticas operam. Nós consideramos que esta assertiva também é válida para o caso brasileiro (Rennó, 2023), contudo, cabe salientar que a mesma foi desenvolvida originalmente para os casos de Argentina, Chile, Itália, Portugal e Espanha.</p>
+<p>O constructo teórico deste trabalho vai assumir que a distância ideológica entre partidos/candidatos afeta decisivamente a transferência de votos entre os candidatos que disputam o segundo turno das eleições municipais no Brasil. Mesmo sendo essa disputa dentro de um mesmo campo ideológico. O desenho de pesquisa utiliza simulação computacional para estimar o fluxo de votos entre o primeiro e o segundo turno das eleições municipais de 2024 em 15 capitais brasileiras.</p>
+<p>O restante do artigo está organizado da seguinte forma: a próxima seção discute, rapidamente, os fundamentos teóricos do nosso modelo a partir da literatura sobre polarização afetiva. Depois disso, apresentamos as principais características do desenho de pesquisa com o objetivo de aumentar a transparência e garantir a replicabilidade dos resultados. Na sequência, apresentamos os resultados do modelo. Por economia de espaço, apresentaremos os resultados detalhados apenas para São Paulo. Leitores interessados nos detalhes matemáticos dos modelos devem consultar os anexos.</p>
+</section>
+<section id="o-que-você-faria-se-a-sua-filha-se-casasse-com-um-bolsonaristapetista" class="level1 page-columns page-full" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> O que você faria se a sua filha se casasse com um bolsonarista/petista?</h1>
+<div class="page-columns page-full"><p>Essa é uma das perguntas clássicas utilizadas por especialistas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> para mensurar o que hoje entendemos por polarização afetiva.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Para mais detalhes sobre a literatura sobre polarização em sistemas multiparidiários, sugerimos: <a href="https://www.sciencedirect.com/science/article/pii/S0261379423000379" class="uri">https://www.sciencedirect.com/science/article/pii/S0261379423000379</a></p></li></div></div>
+<p>De acordo com Tajfel e Turner (1979), sob condições de competição de grupo, o senso de pertencimento a um grupo incute avaliações positivas do grupo interno e, correspondentemente, avaliações hostis de grupos externos. No caso do partidarismo, essa divergência no afeto em relação aos partidos de dentro e de fora — polarização afetiva — aumentou substancialmente nas últimas quatro década (Ivengar e Westwood, 2015).</p>
+<p>As etiquetas ideológicas de “esquerda” e “direita” desempenham um papel fundamental em diversos sistemas multipartidários, atuando como identificadores de grupos. Esse fenômeno faz com que as pessoas tendam a enxergar os partidos e seus apoiadores dentro de seu próprio espectro ideológico como parte do “nosso grupo”, enquanto os adversários do outro espectro são vistos como “eles” (Druckman e Levendusky, 2019).</p>
+<p>De acordo com Vegetti e Širinić (2019), esse cenário intensifica as diferenças entre os adeptos desses dois blocos ideológicos. Essa identificação não apenas segmenta a sociedade, mas também fomenta um tipo de polarização afetiva bipolar em que a animosidade entre os apoiadores da esquerda e da direita se torna cada vez mais pronunciada.</p>
+<p>Além disso, a ideologia fundamentada na identidade não necessariamente reflete um conjunto coerente de crenças políticas. Isso significa que os efeitos de polarização podem surgir mesmo entre cidadãos que, em questões chave, adotam posições centristas ou possuem crenças ideologicamente inconsistentes em diferentes temas. Ou seja, a polarização não depende exclusivamente de alinhamentos claros em questões políticas, mas também da forte identificação com um grupo ideológico.</p>
+<p>No Brasil, o livro a Biografia do Abismo representa, salvo melhor juízo, a primeira tentativa de divulgar, para o público não acadêmico, esse fenômeno, além de discutir suas possíveis causas e consequências</p>
+</section>
+<section id="metodologia" class="level1 page-columns page-full" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Metodologia</h1>
+<div class="page-columns page-full"><p>O modelo inicia baseando-se no percentual dos votos válidos que cada candidato em uma das quinze capitais<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, que irão ao segundo turno, recebeu. Concorrerão no segundo turno da eleição os dois primeiros colocados no primeiro turno. Espera-se, no entanto, que haja transferência de votos para os candidatos que irão ao segundo turno da eleição de acordo com a posição ideológica do partido ao qual fazem parte. Desse modo, para calcular a transferência de votos a partir da polarização ideológica entre os candidatos, definimos a posição relativa de cada competidor no espectro ideológico em relação ao partido que pertencem. Neste trabalho, reproduzimos a classificação proposta por Bolognesi, Codato e Ribeiro (2023). Os autores estabelecem uma escala de ideologia na qual aos partido de esquerda atribuem-se valores próximos a 0, enquanto aos partido de direita, atribuem-se valores mais próximos a 10. Depois disso, devemos estabelecer a relação teórica de interess Seguindo X, W e Z, nossa hipótese de trabalho sustenta que quanto maior a distância ideológica entre os partidos aos quais seus candidatos pertencem, menor será o potencial de transferência de votos entre eles, conforme ilustra a Figura 1</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;De acordo com o Tribunal Superior Eleitoral (TSE), 15 capitais brasileiras terão segundo turno para o Executivo municipal de 2024. São elas: Aracaju (Sergipe), Belém (Pará), Belo Horizonte (MG), Campo Grande (Mato Grosso do Sul), Cuiabá (Mato Grosso), Curitiba (Paraná), Fortaleza (Ceará), João Pessoa (Paraíba), Manaus (Amazonas), Natal (Rio Grande do Norte), Palmas (Tocantins), Porto Alegre (Rio Grande do Sul), Porto Velho (Rondônia) e São Paulo (São Paulo)</p></li></div></div>
+</section>
+<section id="resultados" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Resultados</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+
+<div id="ejengdbauj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#ejengdbauj table {
+  font-family: Jost, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ejengdbauj thead, #ejengdbauj tbody, #ejengdbauj tfoot, #ejengdbauj tr, #ejengdbauj td, #ejengdbauj th {
+  border-style: none;
+}
+
+#ejengdbauj p {
+  margin: 0;
+  padding: 0;
+}
+
+#ejengdbauj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ejengdbauj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ejengdbauj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ejengdbauj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ejengdbauj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ejengdbauj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ejengdbauj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ejengdbauj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ejengdbauj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ejengdbauj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ejengdbauj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ejengdbauj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ejengdbauj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ejengdbauj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ejengdbauj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ejengdbauj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ejengdbauj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ejengdbauj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ejengdbauj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ejengdbauj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ejengdbauj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ejengdbauj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ejengdbauj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ejengdbauj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ejengdbauj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ejengdbauj .gt_left {
+  text-align: left;
+}
+
+#ejengdbauj .gt_center {
+  text-align: center;
+}
+
+#ejengdbauj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ejengdbauj .gt_font_normal {
+  font-weight: normal;
+}
+
+#ejengdbauj .gt_font_bold {
+  font-weight: bold;
+}
+
+#ejengdbauj .gt_font_italic {
+  font-style: italic;
+}
+
+#ejengdbauj .gt_super {
+  font-size: 65%;
+}
+
+#ejengdbauj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ejengdbauj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ejengdbauj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ejengdbauj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ejengdbauj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ejengdbauj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ejengdbauj .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style=""><strong>Resultados previstos pelo modelo de transferência de votos por capital</strong></td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Capital">Capital</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Vencedor">Vencedor</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Votos">Votos</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Municipio" class="gt_row gt_center">Aracaju</td>
+<td headers="Vencedor" class="gt_row gt_center">Emilia Correa</td>
+<td headers="Votos" class="gt_row gt_center">58.26%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Belo Horizonte</td>
+<td headers="Vencedor" class="gt_row gt_center">Bruno Engler</td>
+<td headers="Votos" class="gt_row gt_center">52.29%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Belém</td>
+<td headers="Vencedor" class="gt_row gt_center">Igor Normando</td>
+<td headers="Votos" class="gt_row gt_center">54.65%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Campo Grande</td>
+<td headers="Vencedor" class="gt_row gt_center">Adriane Lopes</td>
+<td headers="Votos" class="gt_row gt_center">47.98%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Cuiabá</td>
+<td headers="Vencedor" class="gt_row gt_center">Abilio</td>
+<td headers="Votos" class="gt_row gt_center">64.24%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Curitiba</td>
+<td headers="Vencedor" class="gt_row gt_center">Eduardo Pimentel</td>
+<td headers="Votos" class="gt_row gt_center">47.48%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Fortaleza</td>
+<td headers="Vencedor" class="gt_row gt_center">Andre Fernandes</td>
+<td headers="Votos" class="gt_row gt_center">52.85%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">João Pessoa</td>
+<td headers="Vencedor" class="gt_row gt_center">Cicero Lucena</td>
+<td headers="Votos" class="gt_row gt_center">62.83%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Manaus</td>
+<td headers="Vencedor" class="gt_row gt_center">David Almeida</td>
+<td headers="Votos" class="gt_row gt_center">47.56%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Natal</td>
+<td headers="Vencedor" class="gt_row gt_center">Paulinho Freire</td>
+<td headers="Votos" class="gt_row gt_center">55.88%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Palmas</td>
+<td headers="Vencedor" class="gt_row gt_center">Eduardo Siqueira Campos</td>
+<td headers="Votos" class="gt_row gt_center">51.80%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Porto Alegre</td>
+<td headers="Vencedor" class="gt_row gt_center">Sebastiao Melo</td>
+<td headers="Votos" class="gt_row gt_center">56.36%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">Porto Velho</td>
+<td headers="Vencedor" class="gt_row gt_center">Mariana Carvalho</td>
+<td headers="Votos" class="gt_row gt_center">54.47%</td></tr>
+    <tr><td headers="Municipio" class="gt_row gt_center">São Paulo</td>
+<td headers="Vencedor" class="gt_row gt_center">Ricardo Nunes</td>
+<td headers="Votos" class="gt_row gt_center">53.85%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="capitais" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Capitais</h1>
+<section id="aracaju" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="aracaju"><span class="header-section-number">5.1</span> Aracaju</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="relatorio_files/figure-html/unnamed-chunk-3-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="belo-horizonte" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="belo-horizonte"><span class="header-section-number">5.2</span> Belo Horizonte</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="relatorio_files/figure-html/unnamed-chunk-4-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="belém" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="belém"><span class="header-section-number">5.3</span> Belém</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="relatorio_files/figure-html/unnamed-chunk-5-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="campo-grande" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="campo-grande"><span class="header-section-number">5.4</span> Campo Grande</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="relatorio_files/figure-html/unnamed-chunk-6-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="apêndice" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Apêndice</h1>
+<section id="aracaju-1" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="aracaju-1"><span class="header-section-number">6.1</span> Aracaju</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+
+<div id="mywmkajihe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#mywmkajihe table {
+  font-family: Jost, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mywmkajihe thead, #mywmkajihe tbody, #mywmkajihe tfoot, #mywmkajihe tr, #mywmkajihe td, #mywmkajihe th {
+  border-style: none;
+}
+
+#mywmkajihe p {
+  margin: 0;
+  padding: 0;
+}
+
+#mywmkajihe .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mywmkajihe .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mywmkajihe .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mywmkajihe .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mywmkajihe .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mywmkajihe .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mywmkajihe .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mywmkajihe .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mywmkajihe .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mywmkajihe .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mywmkajihe .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mywmkajihe .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mywmkajihe .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mywmkajihe .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mywmkajihe .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mywmkajihe .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mywmkajihe .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mywmkajihe .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mywmkajihe .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mywmkajihe .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mywmkajihe .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mywmkajihe .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mywmkajihe .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mywmkajihe .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mywmkajihe .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mywmkajihe .gt_left {
+  text-align: left;
+}
+
+#mywmkajihe .gt_center {
+  text-align: center;
+}
+
+#mywmkajihe .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mywmkajihe .gt_font_normal {
+  font-weight: normal;
+}
+
+#mywmkajihe .gt_font_bold {
+  font-weight: bold;
+}
+
+#mywmkajihe .gt_font_italic {
+  font-style: italic;
+}
+
+#mywmkajihe .gt_super {
+  font-size: 65%;
+}
+
+#mywmkajihe .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mywmkajihe .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mywmkajihe .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mywmkajihe .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mywmkajihe .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mywmkajihe .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mywmkajihe .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal" style=""><strong>Votação esperada - 2º turno 2024</strong></td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Modelo de transferência de votos (Aracaju)</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Modelo">Modelo</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Luiz Roberto (PDT)">Luiz Roberto (PDT)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Emilia Correa (PL)">Emilia Correa (PL)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Modelo" class="gt_row gt_left">Simples</td>
+<td headers="Luiz Roberto (PDT)" class="gt_row gt_center">33.89%</td>
+<td headers="Emilia Correa (PL)" class="gt_row gt_center">58.26%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Potência</td>
+<td headers="Luiz Roberto (PDT)" class="gt_row gt_center">35.72%</td>
+<td headers="Emilia Correa (PL)" class="gt_row gt_center">64.28%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Exponencial</td>
+<td headers="Luiz Roberto (PDT)" class="gt_row gt_center">33.58%</td>
+<td headers="Emilia Correa (PL)" class="gt_row gt_center">58.73%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Sigmoide</td>
+<td headers="Luiz Roberto (PDT)" class="gt_row gt_center">34.81%</td>
+<td headers="Emilia Correa (PL)" class="gt_row gt_center">58.44%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Quadrático</td>
+<td headers="Luiz Roberto (PDT)" class="gt_row gt_center">30.51%</td>
+<td headers="Emilia Correa (PL)" class="gt_row gt_center">58.56%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Gaussiana</td>
+<td headers="Luiz Roberto (PDT)" class="gt_row gt_center">29.92%</td>
+<td headers="Emilia Correa (PL)" class="gt_row gt_center">59.06%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Polinomial</td>
+<td headers="Luiz Roberto (PDT)" class="gt_row gt_center">43.14%</td>
+<td headers="Emilia Correa (PL)" class="gt_row gt_center">56.86%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Gompertz</td>
+<td headers="Luiz Roberto (PDT)" class="gt_row gt_center">43.93%</td>
+<td headers="Emilia Correa (PL)" class="gt_row gt_center">56.07%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Hiperbólico</td>
+<td headers="Luiz Roberto (PDT)" class="gt_row gt_center">38.52%</td>
+<td headers="Emilia Correa (PL)" class="gt_row gt_center">61.48%</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="3">Fonte: Gauss Analítica</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="belo-horizonte-1" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="belo-horizonte-1"><span class="header-section-number">6.2</span> Belo Horizonte</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+
+<div id="nhhvxfcyjs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#nhhvxfcyjs table {
+  font-family: Jost, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#nhhvxfcyjs thead, #nhhvxfcyjs tbody, #nhhvxfcyjs tfoot, #nhhvxfcyjs tr, #nhhvxfcyjs td, #nhhvxfcyjs th {
+  border-style: none;
+}
+
+#nhhvxfcyjs p {
+  margin: 0;
+  padding: 0;
+}
+
+#nhhvxfcyjs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#nhhvxfcyjs .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#nhhvxfcyjs .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#nhhvxfcyjs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#nhhvxfcyjs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#nhhvxfcyjs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#nhhvxfcyjs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#nhhvxfcyjs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#nhhvxfcyjs .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#nhhvxfcyjs .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#nhhvxfcyjs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#nhhvxfcyjs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#nhhvxfcyjs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#nhhvxfcyjs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#nhhvxfcyjs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nhhvxfcyjs .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#nhhvxfcyjs .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#nhhvxfcyjs .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#nhhvxfcyjs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nhhvxfcyjs .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#nhhvxfcyjs .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nhhvxfcyjs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#nhhvxfcyjs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nhhvxfcyjs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#nhhvxfcyjs .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nhhvxfcyjs .gt_left {
+  text-align: left;
+}
+
+#nhhvxfcyjs .gt_center {
+  text-align: center;
+}
+
+#nhhvxfcyjs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#nhhvxfcyjs .gt_font_normal {
+  font-weight: normal;
+}
+
+#nhhvxfcyjs .gt_font_bold {
+  font-weight: bold;
+}
+
+#nhhvxfcyjs .gt_font_italic {
+  font-style: italic;
+}
+
+#nhhvxfcyjs .gt_super {
+  font-size: 65%;
+}
+
+#nhhvxfcyjs .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#nhhvxfcyjs .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#nhhvxfcyjs .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#nhhvxfcyjs .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#nhhvxfcyjs .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#nhhvxfcyjs .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#nhhvxfcyjs .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal" style=""><strong>Votação esperada - 2º turno 2024</strong></td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Modelo de transferência de votos (Belo Horizonte)</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Modelo">Modelo</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Fuad Noman (PSD)">Fuad Noman (PSD)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Bruno Engler (PL)">Bruno Engler (PL)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Modelo" class="gt_row gt_left">Simples</td>
+<td headers="Fuad Noman (PSD)" class="gt_row gt_center">47.71%</td>
+<td headers="Bruno Engler (PL)" class="gt_row gt_center">52.29%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Potência</td>
+<td headers="Fuad Noman (PSD)" class="gt_row gt_center">54.00%</td>
+<td headers="Bruno Engler (PL)" class="gt_row gt_center">46.00%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Exponencial</td>
+<td headers="Fuad Noman (PSD)" class="gt_row gt_center">47.74%</td>
+<td headers="Bruno Engler (PL)" class="gt_row gt_center">52.26%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Sigmoide</td>
+<td headers="Fuad Noman (PSD)" class="gt_row gt_center">47.43%</td>
+<td headers="Bruno Engler (PL)" class="gt_row gt_center">52.57%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Quadrático</td>
+<td headers="Fuad Noman (PSD)" class="gt_row gt_center">47.69%</td>
+<td headers="Bruno Engler (PL)" class="gt_row gt_center">52.31%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Gaussiana</td>
+<td headers="Fuad Noman (PSD)" class="gt_row gt_center">47.56%</td>
+<td headers="Bruno Engler (PL)" class="gt_row gt_center">52.44%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Polinomial</td>
+<td headers="Fuad Noman (PSD)" class="gt_row gt_center">48.45%</td>
+<td headers="Bruno Engler (PL)" class="gt_row gt_center">51.55%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Gompertz</td>
+<td headers="Fuad Noman (PSD)" class="gt_row gt_center">45.50%</td>
+<td headers="Bruno Engler (PL)" class="gt_row gt_center">54.50%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Hiperbólico</td>
+<td headers="Fuad Noman (PSD)" class="gt_row gt_center">47.62%</td>
+<td headers="Bruno Engler (PL)" class="gt_row gt_center">52.38%</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="3">Fonte: Gauss Analítica</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="belém-1" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="belém-1"><span class="header-section-number">6.3</span> Belém</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+
+<div id="ycnwtjgngd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#ycnwtjgngd table {
+  font-family: Jost, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ycnwtjgngd thead, #ycnwtjgngd tbody, #ycnwtjgngd tfoot, #ycnwtjgngd tr, #ycnwtjgngd td, #ycnwtjgngd th {
+  border-style: none;
+}
+
+#ycnwtjgngd p {
+  margin: 0;
+  padding: 0;
+}
+
+#ycnwtjgngd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ycnwtjgngd .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ycnwtjgngd .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ycnwtjgngd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ycnwtjgngd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ycnwtjgngd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ycnwtjgngd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ycnwtjgngd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ycnwtjgngd .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ycnwtjgngd .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ycnwtjgngd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ycnwtjgngd .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ycnwtjgngd .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ycnwtjgngd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ycnwtjgngd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ycnwtjgngd .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ycnwtjgngd .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ycnwtjgngd .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ycnwtjgngd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ycnwtjgngd .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ycnwtjgngd .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ycnwtjgngd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ycnwtjgngd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ycnwtjgngd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ycnwtjgngd .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ycnwtjgngd .gt_left {
+  text-align: left;
+}
+
+#ycnwtjgngd .gt_center {
+  text-align: center;
+}
+
+#ycnwtjgngd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ycnwtjgngd .gt_font_normal {
+  font-weight: normal;
+}
+
+#ycnwtjgngd .gt_font_bold {
+  font-weight: bold;
+}
+
+#ycnwtjgngd .gt_font_italic {
+  font-style: italic;
+}
+
+#ycnwtjgngd .gt_super {
+  font-size: 65%;
+}
+
+#ycnwtjgngd .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ycnwtjgngd .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ycnwtjgngd .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ycnwtjgngd .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ycnwtjgngd .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ycnwtjgngd .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ycnwtjgngd .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal" style=""><strong>Votação esperada - 2º turno 2024</strong></td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Modelo de transferência de votos (Belém)</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Modelo">Modelo</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Igor Normando (MDB)">Igor Normando (MDB)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Delegado Eder Mauro (PL)">Delegado Eder Mauro (PL)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Modelo" class="gt_row gt_left">Simples</td>
+<td headers="Igor Normando (MDB)" class="gt_row gt_center">54.65%</td>
+<td headers="Delegado Eder Mauro (PL)" class="gt_row gt_center">41.48%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Potência</td>
+<td headers="Igor Normando (MDB)" class="gt_row gt_center">54.25%</td>
+<td headers="Delegado Eder Mauro (PL)" class="gt_row gt_center">45.75%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Exponencial</td>
+<td headers="Igor Normando (MDB)" class="gt_row gt_center">55.06%</td>
+<td headers="Delegado Eder Mauro (PL)" class="gt_row gt_center">41.82%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Sigmoide</td>
+<td headers="Igor Normando (MDB)" class="gt_row gt_center">55.36%</td>
+<td headers="Delegado Eder Mauro (PL)" class="gt_row gt_center">41.96%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Quadrático</td>
+<td headers="Igor Normando (MDB)" class="gt_row gt_center">54.58%</td>
+<td headers="Delegado Eder Mauro (PL)" class="gt_row gt_center">41.77%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Gaussiana</td>
+<td headers="Igor Normando (MDB)" class="gt_row gt_center">55.35%</td>
+<td headers="Delegado Eder Mauro (PL)" class="gt_row gt_center">42.44%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Polinomial</td>
+<td headers="Igor Normando (MDB)" class="gt_row gt_center">57.78%</td>
+<td headers="Delegado Eder Mauro (PL)" class="gt_row gt_center">42.22%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Gompertz</td>
+<td headers="Igor Normando (MDB)" class="gt_row gt_center">56.25%</td>
+<td headers="Delegado Eder Mauro (PL)" class="gt_row gt_center">43.75%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Hiperbólico</td>
+<td headers="Igor Normando (MDB)" class="gt_row gt_center">56.60%</td>
+<td headers="Delegado Eder Mauro (PL)" class="gt_row gt_center">43.40%</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="3">Fonte: Gauss Analítica</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="campo-grande-1" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="campo-grande-1"><span class="header-section-number">6.4</span> Campo Grande</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+
+<div id="senzfqfjkv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#senzfqfjkv table {
+  font-family: Jost, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#senzfqfjkv thead, #senzfqfjkv tbody, #senzfqfjkv tfoot, #senzfqfjkv tr, #senzfqfjkv td, #senzfqfjkv th {
+  border-style: none;
+}
+
+#senzfqfjkv p {
+  margin: 0;
+  padding: 0;
+}
+
+#senzfqfjkv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#senzfqfjkv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#senzfqfjkv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#senzfqfjkv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#senzfqfjkv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#senzfqfjkv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#senzfqfjkv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#senzfqfjkv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#senzfqfjkv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#senzfqfjkv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#senzfqfjkv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#senzfqfjkv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#senzfqfjkv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#senzfqfjkv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#senzfqfjkv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#senzfqfjkv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#senzfqfjkv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#senzfqfjkv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#senzfqfjkv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#senzfqfjkv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#senzfqfjkv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#senzfqfjkv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#senzfqfjkv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#senzfqfjkv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#senzfqfjkv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#senzfqfjkv .gt_left {
+  text-align: left;
+}
+
+#senzfqfjkv .gt_center {
+  text-align: center;
+}
+
+#senzfqfjkv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#senzfqfjkv .gt_font_normal {
+  font-weight: normal;
+}
+
+#senzfqfjkv .gt_font_bold {
+  font-weight: bold;
+}
+
+#senzfqfjkv .gt_font_italic {
+  font-style: italic;
+}
+
+#senzfqfjkv .gt_super {
+  font-size: 65%;
+}
+
+#senzfqfjkv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#senzfqfjkv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#senzfqfjkv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#senzfqfjkv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#senzfqfjkv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#senzfqfjkv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#senzfqfjkv .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal" style=""><strong>Votação esperada - 2º turno 2024</strong></td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Modelo de transferência de votos (Campo Grande)</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Modelo">Modelo</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Adriane Lopes (PP)">Adriane Lopes (PP)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Rose Modesto (União Brasil)">Rose Modesto (União Brasil)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Modelo" class="gt_row gt_left">Simples</td>
+<td headers="Adriane Lopes (PP)" class="gt_row gt_center">47.98%</td>
+<td headers="Rose Modesto (União Brasil)" class="gt_row gt_center">44.79%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Potência</td>
+<td headers="Adriane Lopes (PP)" class="gt_row gt_center">52.84%</td>
+<td headers="Rose Modesto (União Brasil)" class="gt_row gt_center">47.16%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Exponencial</td>
+<td headers="Adriane Lopes (PP)" class="gt_row gt_center">49.80%</td>
+<td headers="Rose Modesto (União Brasil)" class="gt_row gt_center">46.46%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Sigmoide</td>
+<td headers="Adriane Lopes (PP)" class="gt_row gt_center">51.45%</td>
+<td headers="Rose Modesto (União Brasil)" class="gt_row gt_center">48.55%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Quadrático</td>
+<td headers="Adriane Lopes (PP)" class="gt_row gt_center">46.32%</td>
+<td headers="Rose Modesto (União Brasil)" class="gt_row gt_center">42.57%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Gaussiana</td>
+<td headers="Adriane Lopes (PP)" class="gt_row gt_center">48.45%</td>
+<td headers="Rose Modesto (União Brasil)" class="gt_row gt_center">44.14%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Polinomial</td>
+<td headers="Adriane Lopes (PP)" class="gt_row gt_center">51.04%</td>
+<td headers="Rose Modesto (União Brasil)" class="gt_row gt_center">48.96%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Gompertz</td>
+<td headers="Adriane Lopes (PP)" class="gt_row gt_center">50.64%</td>
+<td headers="Rose Modesto (União Brasil)" class="gt_row gt_center">49.36%</td></tr>
+    <tr><td headers="Modelo" class="gt_row gt_left">Hiperbólico</td>
+<td headers="Adriane Lopes (PP)" class="gt_row gt_center">51.46%</td>
+<td headers="Rose Modesto (União Brasil)" class="gt_row gt_center">48.54%</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="3">Fonte: Gauss Analítica</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

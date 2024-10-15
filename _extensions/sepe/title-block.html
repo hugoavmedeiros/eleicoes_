@@ -1,0 +1,31 @@
+<header id="title-block-header">
+$if(title)$<h1 class="title">$title$</h1>$endif$
+$if(subtitle)$
+<p class="subtitle">$subtitle$</p>
+$endif$
+<div class="grid" style="--bs-gap: .25rem 1rem;">
+$for(author)$
+<div class="author g-col-xxl-4 g-col-xl-4  g-col-lg-4 g-col-md-4 g-col-sm-6 g-col-12">
+      $author.othernames$ $author.familyname$
+      <br>
+      <em>$author.qualifications$</em>
+      <br>
+      <a href="mailto:$author.email$">$author.email$</a>
+</div>
+<!--p class="author">$author$</p-->
+$endfor$
+</div>
+$if(published)$
+<p class="date">$published$</p>
+$endif$
+$if(updated)$
+<p class="modified">$updated$&nbsp;<a href="sepe_RelatorioTecnico.pdf" download><i class="fas fa-file-pdf fa-lg" style="color: #B30000;"></i>
+</a></p>
+$endif$
+$if(abstract)$
+<div class="abstract">
+<div class="abstract-title">$abstract-title$</div>
+$abstract$
+</div>
+$endif$
+</header>
