@@ -117,7 +117,7 @@ pre.numberSource code > span > a:first-child::before {
 }
 
 .subtitle {
-  font-size: calc(1rem + 0.9vw);
+  font-size: calc(0.8rem + 0.9vw);
 }
 
 #header > h4.author > div > div {
@@ -281,7 +281,7 @@ div.level3 h4 {
 .figure {
   width: 100% !important;
   /*font-family: Jost;*/
-  font-size: 80%;
+  font-size: 100%;
 }
 
 .firstWords {

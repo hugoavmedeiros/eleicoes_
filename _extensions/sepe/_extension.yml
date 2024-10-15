@@ -53,7 +53,7 @@ contributes:
       lang: pt-BR
       link-citations: true
       link-references: true
-      reference-location: margin
+      reference-location: document
       engine: knitr
       output-file: "index"
       output-ext:  "html"
