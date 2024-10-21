@@ -31,45 +31,46 @@ contributes:
         show.signif.stars: true
 
     html:
-      code-overflow: wrap
-      theme: [spacelab, fonts.scss]
-      template-partials: title-block.html
-      toc: true
-      toc-depth: 2
-      toc-float: true
-      toc-title: "Sumário"
-      html-math-method:
-        method: mathjax
-        url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"
-      number-sections: true
-      fig_caption: true
-      highlight-style: github
-      #cover-image: ressources/bloc-etat
-      css: sepe_report.css
-      include-in-header: header.html
-      include-in-footer: footer.html
       biblio-style: authoryear-comp
-      linestretch: 1.5
-      lang: pt-BR
-      link-citations: true
-      link-references: true
-      reference-location: document
-      engine: knitr
-      output-file: "index"
-      output-ext:  "html"
-      echo: false
-      warning: false
-      message: false
       collapse: true
+      code-overflow: wrap
+      crossref: true
+      css: sepe_report.css
+      default-image-extension: svg
+      dev: "svglite"
+      echo: false
+      engine: knitr
+      fig-caption: true
+      fig.align: 'center'
+      fig-format: svglite
       fig-height: 5
       fig-width: 8
       fig.cap: ''
-      fig.align: 'center'
-      dev: "svglite"
-      fig-format: svglite
-      default-image-extension: svg
+      filters:
+        - inline-svg.lua
+      highlight-style: github
+      html-math-method:
+        method: mathjax
+        url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"
+      include-in-footer: footer.html
+      include-in-header: header.html
+      lang: pt-BR
+      linestretch: 1.5
+      link-citations: true
+      link-references: true
+      message: false
+      number-sections: true
+      output-ext: "html"
+      output-file: "index"
       R.options:
         show.signif.stars: true
         knitr.svg.object: true
-      filters:
-        - inline-svg.lua
+      reference-location: document
+      #template-partials: title-block.html
+      theme: [spacelab, fonts.scss]
+      toc: true
+      toc-depth: 3
+      toc-float: true
+      toc-title: "Sumário"
+      warning: false
+

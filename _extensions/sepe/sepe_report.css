@@ -64,7 +64,6 @@ p {
     text-align: justify;
 }
 
-
 :root {
   --bs-body-bg: var(--bs-gray-100);
   --bs-body-color: var(--bs-gray-700);
@@ -84,9 +83,10 @@ pre {
     color: var(--bs-gray-700);
 }
 
+/*
 pre.numberSource code > span > a:first-child::before {
     color: var(--bs-gray-500);
-    /*font-family: ;*/
+    /*font-family: ;
     text-decoration: none !important;
     color: var(--bs-link-color) !important;
 }
@@ -170,11 +170,12 @@ a {
   list-style-type: lower-latin;
 }
 
-
+/*
 .firstWords {
   font-variant: small-caps;
   font-weight: 600;
 }
+*/
 
 ul {
   list-style-type: disclosure-closed;
@@ -284,16 +285,18 @@ div.level3 h4 {
   font-size: 100%;
 }
 
+/*
 .firstWords {
   font-variant: small-caps;
   font-weight: 600;
 }
-
+*/
 
 section > p {
     text-indent: 1em;
 }
 
+/*
 section > p:first-of-type {
     text-indent: 0;
 }
@@ -305,11 +308,11 @@ section > p:first-of-type::first-letter {
     line-height:1em;
     font-weight: 600;
 }
+    */
 
 .leaflet-control {
   text-align: left;
 }
-
 
 .margin-sidebar {
   background-image: url(logo_fundo_branco.png); /*url(sepe_pos_color.png);*/
