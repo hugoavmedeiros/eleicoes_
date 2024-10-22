@@ -66,7 +66,7 @@ contributes:
         show.signif.stars: true
         knitr.svg.object: true
       reference-location: document
-      #template-partials: title-block.html
+      template-partials: title-block.html
       theme: [spacelab, fonts.scss]
       toc: true
       toc-depth: 3
