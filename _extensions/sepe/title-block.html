@@ -6,11 +6,13 @@ $endif$
 <div class="grid" style="--bs-gap: .25rem 1rem;">
 $for(author)$
 <div class="author g-col-xxl-4 g-col-xl-4  g-col-lg-4 g-col-md-4 g-col-sm-6 g-col-12">
-      $author.othernames$ $author.familyname$
+      $author.othernames$ $author.familyname$ <a href="$author.linkedin$" target="_blank">
+            <i class="fab fa-linkedin"></i>
+          </a>
       <br>
       <em>$author.qualifications$</em>
       <br>
-      <a href="mailto:$author.email$">$author.email$</a>
+      <a href="mailto:$author.email$">$author.email$</a>          
 </div>
 <!--p class="author">$author$</p-->
 $endfor$
